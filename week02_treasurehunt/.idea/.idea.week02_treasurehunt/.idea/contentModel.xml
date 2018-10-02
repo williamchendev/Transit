@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\William Spelman\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\William Spelman\.Rider2018.2\system\resharper-host\Local\Transient\ReSharperHost\v182\SolutionCaches\_week02_treasurehunt.249213452.00" t="ExcludeRecursive" />
+    <e p="C:\Users\William Spelman\Documents\GitHub\Transit\week02_treasurehunt" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="CursorLock.cs" t="Include" />
+          <e p="DestroyParticle.cs" t="Include" />
+          <e p="Effects" t="Include">
+            <e p="Assets" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="Cam" t="Include">
+                  <e p="Effects" t="Include">
+                    <e p="Dither.cs" t="Include" />
+                    <e p="Posterize.cs" t="Include" />
+                    <e p="RetroPixelMax.cs" t="Include" />
+                    <e p="RetroPixelPalette.cs" t="Include" />
+                    <e p="RetroSize.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="Custom" t="Include">
+                  <e p="Dither.shader" t="Include" />
+                  <e p="Posterize.shader" t="Include" />
+                  <e p="RetroPixelMax.shader" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="BlackScreen.cs" t="Include" />
+            <e p="BlackScreenInspect.cs" t="Include" />
+            <e p="BlackTrans.cs" t="Include" />
+            <e p="BoatTiltScript.cs" t="Include" />
+            <e p="DestroyOnMove.cs" t="Include" />
+            <e p="EndTrans.cs" t="Include" />
+            <e p="InnoPixelCamera.cs" t="Include" />
+          </e>
+          <e p="EndGame.cs" t="Include" />
+          <e p="HintTextScript.cs" t="Include" />
+          <e p="InteractableBehavior.cs" t="Include" />
+          <e p="OxyDisplayScript.cs" t="Include" />
+          <e p="PieceScript.cs" t="Include" />
+          <e p="PlayerBehavior.cs" t="Include" />
+          <e p="SimpleSmoothMouseLook.cs" t="Include" />
+          <e p="StartGameScript.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+      <e p="week02_treasurehunt.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
