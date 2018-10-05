@@ -64,7 +64,7 @@ public class InnoWaveBehavior : MonoBehaviour
 {
 
 	//Static
-	private static int size = 160;
+	public static int size = 160;
 	
 	//Settings
 	[SerializeField] private Material wave_material;
@@ -73,12 +73,14 @@ public class InnoWaveBehavior : MonoBehaviour
 	[SerializeField] private int wave_num = 3;
 	[Range(0, 2)]
 	[SerializeField] private float wave_spd = 1f;
-	public Vector2 position = Vector2.zero;
+	[SerializeField] private Vector2 position = Vector2.zero;
 	
 	//Variables
 	private Wave[] waves;
 	private MeshFilter mesh_filter;
 	private MeshRenderer mesh_rend;
+
+	private Vector3[,] heightmap;
 
 	void Awake()
 	{
@@ -94,18 +96,21 @@ public class InnoWaveBehavior : MonoBehaviour
 		}
 		MeshData mesh_data = MeshGenerator.generateMesh(new float[size,size]);
 		mesh_filter.mesh = mesh_data.createMesh();
+		gameObject.AddComponent<MeshCollider>();
 
 		waves = new Wave[3];
 		for (int i = 0; i < 3; i++)
 		{
 			waves[i] = new Wave(i);
 		}
+		
+		heightmap = new Vector3[size,size];
 	}
 
 	void Update()
 	{
 		//Create Height Map
-		Vector3[,] heightmap = new Vector3[size,size];
+		heightmap = new Vector3[size,size];
 		float wave_time = Time.time * wave_spd;
 		
 		//Set Height Map to Base Height
@@ -126,7 +131,7 @@ public class InnoWaveBehavior : MonoBehaviour
 			{
 				for (int wav = 0; wav < wave_num; wav++)
 				{
-					Vector2 temp_pos = position * 100;
+					Vector2 temp_pos = position;
 					float temp_direction = (Mathf.Cos(waves[wav].direction * Mathf.Deg2Rad) * w) + (h * Mathf.Sin(waves[wav].direction * Mathf.Deg2Rad));
 					float k = waves[wav].steepness / ((Mathf.PI * 2) / waves[wav].wavelength);
 					float wave_speed = (wave_time / 4) * Mathf.Sqrt(9.8f / k);
@@ -144,13 +149,24 @@ public class InnoWaveBehavior : MonoBehaviour
 		MeshData mesh_data = MeshGenerator.generateMesh(heightmap);
 		
 		//Update Mesh
-		mesh_rend.material.SetTextureOffset("_MainTex", new Vector2(-wave_time / 35, -wave_time / 35)); //"_DetailAlbedoMap"
+		mesh_rend.material.SetTextureOffset("_MainTex", new Vector2(-wave_time / 35, -wave_time / 35));
 		mesh_rend.material.SetTextureOffset("_DetailAlbedoMap", new Vector2(-wave_time / 25, -wave_time / 25));
 		
 		//Set Mesh Vertices
 		mesh_filter.mesh.vertices = mesh_data.vertices;
 		mesh_filter.mesh.RecalculateNormals();
 		//mesh_filter.mesh = mesh_data.createMesh();
+	}
+
+	public void setPosition(Vector2 pos)
+	{
+		position = pos;
+		transform.position = new Vector3(pos.x, transform.position.y, pos.y);
+	}
+
+	public Vector3 getPointAt(int x, int y)
+	{
+		return heightmap[Mathf.Clamp(x, 0, heightmap.GetLength(0) - 1), Mathf.Clamp(y, 0, heightmap.GetLength(1) - 1)];
 	}
 
 	private Material defaultMat()
