@@ -7,8 +7,6 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="BoatBehavior.cs" t="Include" />
-        <e p="DestroyScript.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="Innoart" t="Include">
             <e p="InnoColorLimit.cs" t="Include" />
@@ -23,8 +21,19 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="BoatScript.cs" t="Include" />
-          <e p="SimpleSmoothMouseLook.cs" t="Include" />
+          <e p="BoatBehavior.cs" t="Include" />
+          <e p="Debug" t="Include">
+            <e p="DestroyScript.cs" t="Include" />
+          </e>
+          <e p="system" t="Include">
+            <e p="PlayerManager.cs" t="Include" />
+            <e p="SimpleSmoothMouseLook.cs" t="Include" />
+            <e p="TextSize.cs" t="Include" />
+          </e>
+          <e p="Text" t="Include">
+            <e p="ChoiceHandler.cs" t="Include" />
+            <e p="TextHandler.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />

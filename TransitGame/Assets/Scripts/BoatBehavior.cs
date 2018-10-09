@@ -72,7 +72,8 @@ public class BoatBehavior : MonoBehaviour {
 			rb.AddForce(spd_vector);
 			
 			//Meets target
-			if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), move_position) < 1f)
+			Vector2 boat_tip_pos = new Vector2(transform.position.x, transform.position.z) + (new Vector2(transform.forward.x, transform.forward.z) * 0.3f);
+			if (Vector2.Distance(boat_tip_pos, move_position) < 1.5f)
 			{
 				moving = false;
 			}
@@ -87,8 +88,14 @@ public class BoatBehavior : MonoBehaviour {
 		
 		//Set Wave Position
 		wave_behave.setPosition(new Vector2(transform.position.x, transform.position.z));
-		float boat_height = (wave_behave.getPointAt(InnoWaveBehavior.size / 2, InnoWaveBehavior.size / 2).y - 1.15f);
-		transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, boat_height, Time.deltaTime * 2), transform.position.z);
+		float boat_sin_height = (Mathf.Sin(Time.time * 0.37f)) * 0.05f;
+		float boat_height = ((wave_behave.getPointAt(InnoWaveBehavior.size / 2, InnoWaveBehavior.size / 2).y - 0.85f) / 2) - 0.45f;
+		transform.position = new Vector3(transform.position.x, Mathf.Clamp(Mathf.Lerp(transform.position.y, boat_height, 0.37f), boat_height - 0.5f, boat_height + 0.5f) + boat_sin_height, transform.position.z);
+		
+		//Set Wave Tangent
+		float x_tangent = Mathf.Sin(Mathf.PerlinNoise(0, Time.time * 0.37f) * 2 * Mathf.PI);
+		float z_tangent = Mathf.Sin(Mathf.PerlinNoise(Time.time * 0.37f, 0) * 2 * Mathf.PI);
+		transform.eulerAngles = new Vector3(x_tangent * 6f, transform.eulerAngles.y, z_tangent * 10f);
 	}
 
 	//Misc Methods
