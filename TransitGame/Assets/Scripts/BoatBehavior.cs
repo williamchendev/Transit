@@ -77,9 +77,6 @@ public class BoatBehavior : MonoBehaviour {
 			{
 				moving = false;
 			}
-			
-			//Velocity
-			//rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
 		}
 		else
 		{
@@ -90,7 +87,7 @@ public class BoatBehavior : MonoBehaviour {
 		wave_behave.setPosition(new Vector2(transform.position.x, transform.position.z));
 		float boat_sin_height = (Mathf.Sin(Time.time * 0.37f)) * 0.05f;
 		float boat_height = ((wave_behave.getPointAt(InnoWaveBehavior.size / 2, InnoWaveBehavior.size / 2).y - 0.85f) / 2) - 0.45f;
-		transform.position = new Vector3(transform.position.x, Mathf.Clamp(Mathf.Lerp(transform.position.y, boat_height, 0.37f), boat_height - 0.5f, boat_height + 0.5f) + boat_sin_height, transform.position.z);
+		transform.position = new Vector3(transform.position.x, boat_height + boat_sin_height, transform.position.z);
 		
 		//Set Wave Tangent
 		float x_tangent = Mathf.Sin(Mathf.PerlinNoise(0, Time.time * 0.37f) * 2 * Mathf.PI);

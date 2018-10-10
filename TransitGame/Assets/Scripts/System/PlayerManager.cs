@@ -33,37 +33,17 @@ public class PlayerManager : MonoBehaviour {
 	void Update () {
 		
 	}
-
-	public bool cursorclick
-	{
-		get
-		{
-			if (Input.GetMouseButtonDown(0))
-			{
-				return true;
-			}
-			return false;
-		}
-	}
 	
-	public Vector3 cursorpos
-	{
-		get
-		{
-			Vector3 v3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			v3.z = 0;
-			return v3;
-		}
-	}
-
+	
 	public void setSkip(int skip)
 	{
 		//Skip events
 	}
 
-	public void continueEvent()
+	public void setText(string text)
 	{
-		
+		TextScript textbox = Instantiate(Resources.Load<GameObject>("Text/Textbox")).GetComponent<TextScript>();
+		textbox.text = text;
 	}
 	
 }
