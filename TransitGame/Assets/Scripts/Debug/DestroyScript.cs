@@ -5,19 +5,13 @@ using UnityEngine;
 public class DestroyScript : MonoBehaviour
 {
 
-	private int timer;
-	
-	// Use this for initialization
-	void Start ()
-	{
-		timer = 200;
-	}
+	public int timer;
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		timer--;
-		if (timer <= 0)
+		if (timer == 0)
 		{
 			Destroy(gameObject);
 		}

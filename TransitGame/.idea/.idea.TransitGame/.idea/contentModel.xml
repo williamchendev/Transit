@@ -27,12 +27,14 @@
           <e p="Debug" t="Include">
             <e p="DestroyScript.cs" t="Include" />
             <e p="DissolveSpriteShader.shader" t="Include" />
+            <e p="TextTimerSpriteShader.shader" t="Include" />
           </e>
           <e p="system" t="Include">
-            <e p="PlayerManager.cs" t="Include" />
             <e p="SimpleSmoothMouseLook.cs" t="Include" />
           </e>
           <e p="Text" t="Include">
+            <e p="ChoiceScript.cs" t="Include" />
+            <e p="EventManager.cs" t="Include" />
             <e p="TextScript.cs" t="Include" />
           </e>
         </e>

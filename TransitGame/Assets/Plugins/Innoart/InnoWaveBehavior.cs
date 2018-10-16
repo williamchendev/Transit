@@ -64,7 +64,7 @@ public class InnoWaveBehavior : MonoBehaviour
 {
 
 	//Static
-	public static int size = 160;
+	public static int size = 90;
 	
 	//Settings
 	[SerializeField] private Material wave_material;
@@ -73,12 +73,15 @@ public class InnoWaveBehavior : MonoBehaviour
 	[SerializeField] private int wave_num = 3;
 	[Range(0, 2)]
 	[SerializeField] private float wave_spd = 1f;
+	[SerializeField] private int frame_skip = 3;
 	[SerializeField] private Vector2 position = Vector2.zero;
 	
 	//Variables
 	private Wave[] waves;
 	private MeshFilter mesh_filter;
 	private MeshRenderer mesh_rend;
+
+	private int frame_num;
 
 	private Vector3[,] heightmap;
 
@@ -105,10 +108,24 @@ public class InnoWaveBehavior : MonoBehaviour
 		}
 		
 		heightmap = new Vector3[size,size];
+		frame_num = frame_skip;
+
+		Update();
 	}
 
 	void Update()
 	{
+		//Frame Skip
+		frame_num++;
+		if (frame_num >= frame_skip)
+		{
+			frame_num = 0;
+		}
+		else
+		{
+			return;
+		}
+		
 		//Create Height Map
 		heightmap = new Vector3[size,size];
 		float wave_time = Time.time * wave_spd;
@@ -120,7 +137,7 @@ public class InnoWaveBehavior : MonoBehaviour
 			{
 				float perlin1 = (Mathf.PerlinNoise((w * 0.8f) + (wave_time * 2), (h * 0.8f) + (wave_time * 2)) * 0.4f);
 				float perlin2 = (Mathf.PerlinNoise((w * 0.01f) + (wave_time * 0.8f), (h * 0.01f) + (wave_time * 0.8f)) * 0.6f);
-				heightmap[w, h] = new Vector3(w, base_height + perlin1 + perlin2, h);
+				heightmap[w, h] = new Vector3(w, perlin1 + perlin2, h);
 			}
 		}
 		
@@ -132,6 +149,7 @@ public class InnoWaveBehavior : MonoBehaviour
 				for (int wav = 0; wav < wave_num; wav++)
 				{
 					Vector2 temp_pos = position;
+					temp_pos = Vector2.zero;
 					float temp_direction = (Mathf.Cos(waves[wav].direction * Mathf.Deg2Rad) * w) + (h * Mathf.Sin(waves[wav].direction * Mathf.Deg2Rad));
 					float k = waves[wav].steepness / ((Mathf.PI * 2) / waves[wav].wavelength);
 					float wave_speed = (wave_time / 4) * Mathf.Sqrt(9.8f / k);
@@ -142,15 +160,16 @@ public class InnoWaveBehavior : MonoBehaviour
 					float x_wave_length = (temp_direction + temp_pos.y) * k;
 					float x_displace = Mathf.Cos(x_wave_length + wave_speed);
 					
-					heightmap[w, h] += new Vector3(x_displace, y_displace, x_displace);
+					heightmap[w, h] += new Vector3(x_displace, base_height + y_displace, x_displace);
 				}
 			}
 		}
 		MeshData mesh_data = MeshGenerator.generateMesh(heightmap);
 		
 		//Update Mesh
-		mesh_rend.material.SetTextureOffset("_MainTex", new Vector2(-wave_time / 35, -wave_time / 35));
-		mesh_rend.material.SetTextureOffset("_DetailAlbedoMap", new Vector2(-wave_time / 25, -wave_time / 25));
+		Vector2 temp_mat_pos = new Vector2(position.x, -position.y) * 0.025f;
+		mesh_rend.material.SetTextureOffset("_MainTex", new Vector2(-wave_time / 35, -wave_time / 35) + temp_mat_pos);
+		mesh_rend.material.SetTextureOffset("_DetailAlbedoMap", new Vector2(-wave_time / 25, -wave_time / 25) + temp_mat_pos);
 		
 		//Set Mesh Vertices
 		mesh_filter.mesh.vertices = mesh_data.vertices;
