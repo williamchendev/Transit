@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wave
+  - Text
+  - Character
+  - EventManager
+  - Offshore
+  - Waypoint
+  - Boat
+  - Anchor
   layers:
   - Default
   - TransparentFX

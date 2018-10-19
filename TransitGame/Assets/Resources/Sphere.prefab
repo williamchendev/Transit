@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4850841370763934}
   - component: {fileID: 33753609728437366}
   - component: {fileID: 23101742434671524}
-  - component: {fileID: 114359347032847556}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -48,7 +47,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1177937692627948}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -84,15 +83,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1177937692627948}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114359347032847556
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1177937692627948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccfbb771b5ebf2541a496cd7fcb9ecfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: -1

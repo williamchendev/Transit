@@ -22,19 +22,28 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="BoatBehavior.cs" t="Include" />
-          <e p="CameraBehavior.cs" t="Include" />
           <e p="Debug" t="Include">
             <e p="DestroyScript.cs" t="Include" />
             <e p="DissolveSpriteShader.shader" t="Include" />
+            <e p="FogOffShader.shader" t="Include" />
             <e p="TextTimerSpriteShader.shader" t="Include" />
           </e>
+          <e p="Interactables" t="Include">
+            <e p="DialogueBehavior.cs" t="Include" />
+          </e>
           <e p="system" t="Include">
-            <e p="SimpleSmoothMouseLook.cs" t="Include" />
+            <e p="AnchorScript.cs" t="Include" />
+            <e p="BoatBehavior.cs" t="Include" />
+            <e p="CameraBehavior.cs" t="Include" />
+            <e p="StartMenu.cs" t="Include" />
+            <e p="TextData.cs" t="Include" />
+            <e p="Transition.cs" t="Include" />
           </e>
           <e p="Text" t="Include">
+            <e p="CharacterScript.cs" t="Include" />
             <e p="ChoiceScript.cs" t="Include" />
             <e p="EventManager.cs" t="Include" />
+            <e p="TextEventScript.cs" t="Include" />
             <e p="TextScript.cs" t="Include" />
           </e>
         </e>
